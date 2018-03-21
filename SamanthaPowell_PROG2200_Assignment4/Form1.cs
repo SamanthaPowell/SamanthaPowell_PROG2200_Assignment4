@@ -80,7 +80,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void timer1_Tick(object sender, EventArgs e)
         {
-            //trump.Move();
+           //trump.Move();
         }
 
 
