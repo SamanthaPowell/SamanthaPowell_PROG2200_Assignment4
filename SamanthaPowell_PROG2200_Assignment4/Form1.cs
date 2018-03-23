@@ -57,9 +57,20 @@ namespace SamanthaPowell_PROG2200_Assignment4
                     }
                 case Keys.Right:
                     {
-                        //MOVE THE PADDLE RIGHT
+                        //MOVE Trump RIGHT
                         trump.Move(Trump.Direction.Right);
                         //Invalidate();
+                        break;
+                    }
+                case Keys.Up:
+                    {
+                        //move trump up
+                        trump.Move(Trump.Direction.Up);
+                        break;
+                    }
+                case Keys.Down:
+                    {
+                        trump.Move(Trump.Direction.Down);
                         break;
                     }
                 case Keys.Space:
@@ -80,7 +91,8 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void timer1_Tick(object sender, EventArgs e)
         {
-           //trump.Move();
+            //trump.Move();
+            Invalidate();
         }
 
 

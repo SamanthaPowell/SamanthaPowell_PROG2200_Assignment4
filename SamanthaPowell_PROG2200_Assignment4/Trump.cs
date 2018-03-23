@@ -16,7 +16,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
         public Rectangle TrumpBox;
         public Rectangle mainCanvas;
         private int size = 40;
-        public enum Direction { Left, Right }
+        public enum Direction { Left, Right, Up, Down }
         private Image image;
 
         public Trump(Rectangle mainCanvas)
@@ -77,6 +77,30 @@ namespace SamanthaPowell_PROG2200_Assignment4
                             TrumpBox.X += 25;
                         }
                         //same as above except in different direction                        
+                        break;
+                    }
+                case Direction.Up:
+                    {
+                        if (mainCanvas.Top + TrumpBox.Top > -25)
+                        {
+                            TrumpBox.Y = TrumpBox.Y - 25;
+                        }
+                        else
+                        {
+                            TrumpBox.Y = 0;
+                        }
+                        break;
+                    }
+                case Direction.Down:
+                    {
+                        if (mainCanvas.Top - TrumpBox.Top < -25)
+                        {
+                            TrumpBox.Y = TrumpBox.Y + 25;
+                        }
+                        else
+                        {
+                            TrumpBox.Y = 0;
+                        }
                         break;
                     }
             }
