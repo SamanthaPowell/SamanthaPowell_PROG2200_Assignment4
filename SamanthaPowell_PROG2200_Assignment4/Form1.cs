@@ -15,34 +15,58 @@ namespace SamanthaPowell_PROG2200_Assignment4
     public partial class Form1 : Form
     {
         Trump trump;
-        HashSet<Allies> allies = new HashSet<Allies>();
+        List<Allies> allies = new List<Allies>();
+        Mueller mueller;
+        private bool gameOver;
 
 
         public Form1()
         {
             InitializeComponent();
-            label3.Visible = false;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             trump = new Trump(this.DisplayRectangle);
+            mueller = new Mueller(this.DisplayRectangle);
+            for (int x = 0; x < 6; x++)
+            {
+                allies.Add(new Allies(this.DisplayRectangle));
+            }
         }
+
+
+
         private void gameCanvas_Paint(object sender, PaintEventArgs e)
         {
-            trump.Draw(e.Graphics);
+            if (gameOver == true)
+            {
+                MessageBox.Show("GAME OVER");
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                mueller.Draw(e.Graphics);
+                trump.Draw(e.Graphics);
+                foreach (Allies ally in allies)
+                {
+                    ally.Draw(e.Graphics);
+                }
+            }
 
         }
+
         private void gameCanvas_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
         }
         public void displayAllies(Graphics graphics)
         {
 
         }
-        
+
 
         public void Form1_keyIsDown(object sender, KeyEventArgs e)
         {
@@ -85,14 +109,65 @@ namespace SamanthaPowell_PROG2200_Assignment4
                     //    }
             }
         }
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void CheckForCollisions()
+        {
+            //first remove any allies objects that miss the paddle
+            for (int x = 0; x < allies.Count; x++)
+                if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
+                {
+                    allies.Remove(allies[x]);
+                }
+        }
+        private void MuellerCollision()
+        {
+            if (mueller.CurrentX <= this.DisplayRectangle.Left)
+            {
+                mueller.FlipX();
+            }
+
+            //collision with right wall
+            if (mueller.CurrentX + mueller.Size >= this.DisplayRectangle.Right)
+            {
+                mueller.FlipX();
+            }
+
+            //collision with ceiling
+            if (mueller.CurrentY <= this.DisplayRectangle.Top)
+            {
+                mueller.FlipY();
+                // boing.PlayFromStart();
+            }
+            //collision with bottom wall
+            if (mueller.CurrentY < 0)
+            {
+                mueller.FlipY();
+            }
+            if (mueller.MuellerBox.IntersectsWith(trump.TrumpBox))
+            {
+                gameOver = true;
+            }
+        }
+
+            private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
         }
 
         public void timer1_Tick(object sender, EventArgs e)
         {
-            //trump.Move();
+            mueller.Move();
+            CheckForCollisions();
+            MuellerCollision();
             Invalidate();
+        }
+
+        public void DisplayAllyCount(Graphics graphics)
+        {
+            //ask the hashset for it's current count
+            string display = String.Format("Ally Count: {0}", allies.Count);
+
+            Font font = new Font("Verdana", 20);
+
+            graphics.DrawString(display, font, Brushes.White, 20, 20);
         }
 
 

@@ -27,6 +27,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
             TrumpBox.Width = size;
 
             //set intial position of  trump
+            
             TrumpBox.X = (mainCanvas.Width /2) - (size / 2);
             TrumpBox.Y = (mainCanvas.Height / 2) - (size / 2);
             ////set x and y velocity for ball
@@ -93,13 +94,13 @@ namespace SamanthaPowell_PROG2200_Assignment4
                     }
                 case Direction.Down:
                     {
-                        if (mainCanvas.Top - TrumpBox.Top < -25)
+                        if (TrumpBox.Y > mainCanvas.Height)
                         {
-                            TrumpBox.Y = TrumpBox.Y + 25;
+                            TrumpBox.Y = mainCanvas.Height +25;
                         }
                         else
                         {
-                            TrumpBox.Y = 0;
+                            TrumpBox.Y = TrumpBox.Y + 25;
                         }
                         break;
                     }
