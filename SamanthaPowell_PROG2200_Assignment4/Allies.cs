@@ -4,7 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// contains ally objects which will display on load and be collected throughout game
+/// </summary>
 namespace SamanthaPowell_PROG2200_Assignment4
 {
    public class Allies
@@ -54,9 +56,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void Draw(Graphics graphics)
         {
-
-            graphics.DrawImage(ImageChosen, AllyBox);
-     
+            graphics.DrawImage(ImageChosen, AllyBox);    
         }
        
     }

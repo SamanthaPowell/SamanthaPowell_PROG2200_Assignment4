@@ -22,20 +22,22 @@ namespace SamanthaPowell_PROG2200_Assignment4
         MciPlayer Catastrophy = new MciPlayer("Sounds/Catastrophy.mp3", "1");
         MciPlayer GoodJob = new MciPlayer("Sounds/GoodJob.mp3", "2");
         MciPlayer TremendousImpact = new MciPlayer("Sounds/TremendousImpact.mp3", "3");
-
+        public int countAllies;
 
         public Form1()
         {
             InitializeComponent();
 
         }
+
         /// <summary>
-        /// Loads game and form
+        /// Loads form and game objects
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             this.WindowState = FormWindowState.Maximized;
             trump = new Trump(this.DisplayRectangle);
             mueller = new Mueller(this.DisplayRectangle);
@@ -43,10 +45,16 @@ namespace SamanthaPowell_PROG2200_Assignment4
             {
                 allies.Add(new Allies(this.DisplayRectangle));
             }
+            timer1.Stop();
+            MessageBox.Show("Help Trump navigate through his own border wall and demise to collect allies " +
+                    "before MEANIE MUELLER gets to you first");
+
+            timer1.Start();
+         
         }
 
         /// <summary>
-        /// Paints objects at each build
+        /// Paints objects on load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,14 +63,16 @@ namespace SamanthaPowell_PROG2200_Assignment4
         {
             if (gameOver == true)
             {
+                
                 timer1.Stop();
-                MessageBox.Show("GAME OVER");
+                MessageBox.Show("GAME OVER. Sad!");
                 //gameOver = false;
                 System.Environment.Exit(0);
                 
             }
             else
             {
+                
                 mueller.Draw(e.Graphics);
                 trump.Draw(e.Graphics);
                 foreach (Allies ally in allies)
@@ -128,14 +138,16 @@ namespace SamanthaPowell_PROG2200_Assignment4
         /// </summary>
         private void CheckForCollisions()
         {
+
             //first remove any allies objects that miss the paddle
             for (int x = 0; x < allies.Count; x++)
                 if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
                 {
                     allies.Remove(allies[x]);
-                   
-                    MciPlayer GoodJob = new MciPlayer("Sounds/GoodJob.mp3", "2");
+                    countAllies++;
+                    GoodJob.PlayFromStart();
                 }
+            
             
 
         }
@@ -168,6 +180,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
             }
             if (mueller.MuellerBox.IntersectsWith(trump.TrumpBox))
             {
+                Catastrophy.PlayFromStart();
                 gameOver = true;
             }
         }
@@ -178,6 +191,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void timer1_Tick(object sender, EventArgs e)
         {
+
             mueller.Move();
             CheckForCollisions();
             MuellerCollision();
@@ -187,16 +201,16 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void DisplayAllyCount(Graphics graphics)
         {
-            for (int x = 0; x > allies.Count;)
-                if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
-                {
-                    x++;
+            //for (int x = 0; x > allies.Count;)
+            //    if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
+            //    {
+                    //x++;
                 //ask the hashset for it's current count
-                    string display = String.Format("Ally Count: {0}", allies.Count );
+                    string display = String.Format("Trump allies: {0}", countAllies );
                     Font font = new Font("Verdana", 20);
-                    graphics.DrawString(display, font, Brushes.White, 20, 20);
+                    graphics.DrawString(display, font, Brushes.White, 200, 20);
                     
-                }
+                
          
         }
 

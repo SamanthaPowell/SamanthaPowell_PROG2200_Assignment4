@@ -105,8 +105,12 @@
     <Content Include="Images\steve-bannon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sounds\GoodJob.mp3" />
-    <Content Include="Sounds\Catastrophe.mp3" />
+    <Content Include="Sounds\GoodJob.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Catastrophe.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sounds\TremendousImpact.mp3" />
   </ItemGroup>
   <ItemGroup>
