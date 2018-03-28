@@ -57,6 +57,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(851, 361);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.InfoText;
             this.Name = "Form1";
             this.Tag = "";

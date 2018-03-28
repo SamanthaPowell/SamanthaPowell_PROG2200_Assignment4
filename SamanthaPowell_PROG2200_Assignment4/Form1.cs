@@ -29,7 +29,11 @@ namespace SamanthaPowell_PROG2200_Assignment4
             InitializeComponent();
 
         }
-
+        /// <summary>
+        /// Loads game and form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -41,7 +45,11 @@ namespace SamanthaPowell_PROG2200_Assignment4
             }
         }
 
-
+        /// <summary>
+        /// Paints objects at each build
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void gameCanvas_Paint(object sender, PaintEventArgs e)
         {
@@ -67,15 +75,16 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         }
 
-        private void gameCanvas_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
+      
         public void displayAllies(Graphics graphics)
         {
 
         }
-
+        /// <summary>
+        /// Moves trump object depending on which arrow key is being pressed down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         public void Form1_keyIsDown(object sender, KeyEventArgs e)
         {
@@ -111,13 +120,12 @@ namespace SamanthaPowell_PROG2200_Assignment4
                         timer1.Enabled = !timer1.Enabled;
                         break;
                     }
-                    //case Keys.N:
-                    //    {
-                    //        balls.Add(new Ball(this.DisplayRectangle));
-                    //        break;
-                    //    }
+
             }
         }
+        /// <summary>
+        /// Checks Trump object collisions
+        /// </summary>
         private void CheckForCollisions()
         {
             //first remove any allies objects that miss the paddle
@@ -131,6 +139,9 @@ namespace SamanthaPowell_PROG2200_Assignment4
             
 
         }
+        /// <summary>
+        /// Checks for MUeller object collision with walls and Trump object
+        /// </summary>
         private void MuellerCollision()
         {
             if (mueller.CurrentX <= this.DisplayRectangle.Left)
@@ -176,10 +187,12 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         public void DisplayAllyCount(Graphics graphics)
         {
-            for (int x = 0; x < allies.Count; x++)
+            for (int x = 0; x > allies.Count;)
                 if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
-                {//ask the hashset for it's current count
-                    string display = String.Format("Ally Count: {0}", allies.Count);
+                {
+                    x++;
+                //ask the hashset for it's current count
+                    string display = String.Format("Ally Count: {0}", allies.Count );
                     Font font = new Font("Verdana", 20);
                     graphics.DrawString(display, font, Brushes.White, 20, 20);
                     
@@ -210,7 +223,10 @@ namespace SamanthaPowell_PROG2200_Assignment4
         {
           
         }
+        private void gameCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
 
-       
+        }
+
     }
 }

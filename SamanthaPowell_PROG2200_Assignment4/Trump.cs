@@ -30,11 +30,6 @@ namespace SamanthaPowell_PROG2200_Assignment4
             
             TrumpBox.X = (mainCanvas.Width /2) - (size / 2);
             TrumpBox.Y = (mainCanvas.Height / 2) - (size / 2);
-            ////set x and y velocity for ball
-            //while (xVelocity > -3 && xVelocity < 3)
-            //    xVelocity = random.Next(-15, 15);
-            //while (yVelocity > -3 && yVelocity < 3)
-            //    yVelocity = random.Next(-15, 15);
 
             image = Image.FromFile("Images/donald_trump_PNG84.png");
 
@@ -44,7 +39,10 @@ namespace SamanthaPowell_PROG2200_Assignment4
         public int CurrentY { get { return TrumpBox.Y; } }
         public int Size { get { return size; } }
 
-        //move
+        /// <summary>
+        /// Specified direction and velocity of direction
+        /// </summary>
+        /// <param name="direction">determines what direction object travels at</param>
         public void Move(Direction direction)
         {
             switch (direction)

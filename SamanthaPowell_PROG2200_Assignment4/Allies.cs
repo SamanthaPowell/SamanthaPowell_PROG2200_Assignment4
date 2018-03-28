@@ -18,10 +18,15 @@ namespace SamanthaPowell_PROG2200_Assignment4
         private string[] Images = { "Images/sessions.png", "Images/sean-spicer.png", "Images/michael-flynn.png",
             "Images/scaramucci.png","Images/kellyanne-conway.png", "Images/steve-bannon.png",
             "Images/Omarosa.png", "Images/RexTillerson.png" };
+
+        /// <summary>
+        /// //create two properties and set initial location as randomized between specified coordinates
+        /// </summary>
+        /// <param name="mainCanvas">Game Form object</param>
         public Allies(Rectangle mainCanvas)
         {
             CurrentX = random.Next(50, mainCanvas.Width);
-            CurrentY = random.Next(20, 100);
+            CurrentY = random.Next(0, 500);
 
             AllyBox.X = CurrentX;
             AllyBox.Y = CurrentY;
@@ -34,24 +39,24 @@ namespace SamanthaPowell_PROG2200_Assignment4
             ImageChosen = Image.FromFile(Images[img]);
             
         }
-        //create two properties
-        //public int CurrentX { get { return AllyBox.X; } }
-        //public int CurrentY { get { return AllyBox.Y; } }
+        
 
         public int CurrentX { get; set; }
         public int CurrentY { get; set; }
 
         public int Size { get { return size; } }
 
-        //set intitial random location of objects
-
+      
+        /// <summary>
+        /// Draws objects
+        /// </summary>
+        /// <param name="graphics">imported graphics object</param>
 
         public void Draw(Graphics graphics)
         {
-            //graphics.FillEllipse(Brushes.White, BallBox);
+
             graphics.DrawImage(ImageChosen, AllyBox);
-          
-          
+     
         }
        
     }
