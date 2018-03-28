@@ -63,7 +63,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
         {
             if (gameOver == true)
             {
-                
+
                 timer1.Stop();
                 MessageBox.Show("GAME OVER. Sad!");
                 //gameOver = false;
@@ -138,17 +138,22 @@ namespace SamanthaPowell_PROG2200_Assignment4
         /// </summary>
         private void CheckForCollisions()
         {
-
+            int x;
             //first remove any allies objects that miss the paddle
-            for (int x = 0; x < allies.Count; x++)
+            for (x = 0; x < allies.Count; x++)
                 if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
                 {
                     allies.Remove(allies[x]);
                     countAllies++;
                     GoodJob.PlayFromStart();
                 }
-            
-            
+                if(allies.Count ==0)
+                {
+                timer1.Stop();
+                    MessageBox.Show("You win!");
+                    TremendousImpact.PlayFromStart();
+                }
+                 
 
         }
         /// <summary>
@@ -198,20 +203,17 @@ namespace SamanthaPowell_PROG2200_Assignment4
            // DisplayAllyCount(e.Graphics);
             Invalidate();
         }
-
+        /// <summary>
+        /// displays count of allies collected
+        /// </summary>
+        /// <param name="graphics"></param>
         public void DisplayAllyCount(Graphics graphics)
         {
-            //for (int x = 0; x > allies.Count;)
-            //    if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
-            //    {
-                    //x++;
-                //ask the hashset for it's current count
-                    string display = String.Format("Trump allies: {0}", countAllies );
-                    Font font = new Font("Verdana", 20);
-                    graphics.DrawString(display, font, Brushes.White, 200, 20);
+
+            string display = String.Format("Trump allies: {0}", countAllies );
+            Font font = new Font("Verdana", 20);
+            graphics.DrawString(display, font, Brushes.White, 200, 20);
                     
-                
-         
         }
 
         private void ChooseLevelDropdown_SelectedIndexChanged(object sender, EventArgs e)
