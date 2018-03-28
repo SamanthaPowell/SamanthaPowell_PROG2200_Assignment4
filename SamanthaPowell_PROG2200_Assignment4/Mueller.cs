@@ -28,12 +28,13 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
             //MuellerBox.X = CurrentX;
             //MuellerBox.Y = CurrentY;
-
-            while (XVelocity > -3 && XVelocity < 3)
-                XVelocity = random.Next(-25, 25);
+            
+         
+            while (XVelocity > -10 && XVelocity < 10)
+                XVelocity = random.Next(-30, 30);
 
             while (YVelocity > -3 && YVelocity < 3)
-                YVelocity = random.Next(-25, 25);
+                YVelocity = random.Next(-30, 30);
 
             //set size of muellerpng
             MuellerBox.Height = size;

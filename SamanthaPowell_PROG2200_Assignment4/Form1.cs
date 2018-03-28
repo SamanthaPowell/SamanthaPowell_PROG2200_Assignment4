@@ -18,6 +18,10 @@ namespace SamanthaPowell_PROG2200_Assignment4
         List<Allies> allies = new List<Allies>();
         Mueller mueller;
         private bool gameOver;
+        //sound effects
+        MciPlayer Catastrophy = new MciPlayer("Sounds/Catastrophy.mp3", "1");
+        MciPlayer GoodJob = new MciPlayer("Sounds/GoodJob.mp3", "2");
+        MciPlayer TremendousImpact = new MciPlayer("Sounds/TremendousImpact.mp3", "3");
 
 
         public Form1()
@@ -31,7 +35,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
             this.WindowState = FormWindowState.Maximized;
             trump = new Trump(this.DisplayRectangle);
             mueller = new Mueller(this.DisplayRectangle);
-            for (int x = 0; x < 6; x++)
+            for (int x = 0; x < 8; x++)
             {
                 allies.Add(new Allies(this.DisplayRectangle));
             }
@@ -43,8 +47,11 @@ namespace SamanthaPowell_PROG2200_Assignment4
         {
             if (gameOver == true)
             {
+                timer1.Stop();
                 MessageBox.Show("GAME OVER");
+                //gameOver = false;
                 System.Environment.Exit(0);
+                
             }
             else
             {
@@ -54,7 +61,9 @@ namespace SamanthaPowell_PROG2200_Assignment4
                 {
                     ally.Draw(e.Graphics);
                 }
+                DisplayAllyCount(e.Graphics);
             }
+           
 
         }
 
@@ -116,7 +125,11 @@ namespace SamanthaPowell_PROG2200_Assignment4
                 if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
                 {
                     allies.Remove(allies[x]);
+                   
+                    MciPlayer GoodJob = new MciPlayer("Sounds/GoodJob.mp3", "2");
                 }
+            
+
         }
         private void MuellerCollision()
         {
@@ -132,13 +145,13 @@ namespace SamanthaPowell_PROG2200_Assignment4
             }
 
             //collision with ceiling
-            if (mueller.CurrentY <= this.DisplayRectangle.Top)
+            if (mueller.CurrentY >this.DisplayRectangle.Top)
             {
                 mueller.FlipY();
                 // boing.PlayFromStart();
             }
             //collision with bottom wall
-            if (mueller.CurrentY < 0)
+            if (mueller.CurrentY < this.DisplayRectangle.Bottom)
             {
                 mueller.FlipY();
             }
@@ -157,20 +170,27 @@ namespace SamanthaPowell_PROG2200_Assignment4
             mueller.Move();
             CheckForCollisions();
             MuellerCollision();
+           // DisplayAllyCount(e.Graphics);
             Invalidate();
         }
 
         public void DisplayAllyCount(Graphics graphics)
         {
-            //ask the hashset for it's current count
-            string display = String.Format("Ally Count: {0}", allies.Count);
-
-            Font font = new Font("Verdana", 20);
-
-            graphics.DrawString(display, font, Brushes.White, 20, 20);
+            for (int x = 0; x < allies.Count; x++)
+                if (trump.TrumpBox.IntersectsWith(allies[x].AllyBox))
+                {//ask the hashset for it's current count
+                    string display = String.Format("Ally Count: {0}", allies.Count);
+                    Font font = new Font("Verdana", 20);
+                    graphics.DrawString(display, font, Brushes.White, 20, 20);
+                    
+                }
+         
         }
 
+        private void ChooseLevelDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -188,7 +208,9 @@ namespace SamanthaPowell_PROG2200_Assignment4
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
+          
         }
+
+       
     }
 }

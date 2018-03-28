@@ -11,12 +11,13 @@ namespace SamanthaPowell_PROG2200_Assignment4
     {
         public Rectangle AllyBox;
         public Rectangle mainCanvas;
-        private int size = 40;
+        private int size = 50;
         private Random random = new Random();
         private Image ImageChosen;
         private int img;
         private string[] Images = { "Images/sessions.png", "Images/sean-spicer.png", "Images/michael-flynn.png",
-            "Images/scaramucci.png","Images/kellyanne-conway.png", "Images/steve-bannon.png", "Images/RexTillerson.png" };
+            "Images/scaramucci.png","Images/kellyanne-conway.png", "Images/steve-bannon.png",
+            "Images/Omarosa.png", "Images/RexTillerson.png" };
         public Allies(Rectangle mainCanvas)
         {
             CurrentX = random.Next(50, mainCanvas.Width);
@@ -28,7 +29,7 @@ namespace SamanthaPowell_PROG2200_Assignment4
             //set size of ballBox
             AllyBox.Height = size;
             AllyBox.Width = size;
-            img =  random.Next(0, 6);
+            img =  random.Next(0, 8);
 
             ImageChosen = Image.FromFile(Images[img]);
             

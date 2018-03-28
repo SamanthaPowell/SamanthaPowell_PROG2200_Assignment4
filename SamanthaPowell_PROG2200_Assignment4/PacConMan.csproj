@@ -51,6 +51,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MciPlayer.cs" />
     <Compile Include="Mueller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Omarosa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\scaramucci.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -101,6 +105,9 @@
     <Content Include="Images\steve-bannon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sounds\GoodJob.mp3" />
+    <Content Include="Sounds\Catastrophe.mp3" />
+    <Content Include="Sounds\TremendousImpact.mp3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
